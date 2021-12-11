@@ -1,16 +1,27 @@
 package com.example.podnotesservice.podnotesBackend.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "episodes")
 public class Episode {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "episode_title")
     private String episodeTitle;
+
+    @Column(name = "episode_url")
     private String episodeURL;
+
+    @JsonIgnoreProperties(value = "episode")
+    @OneToMany(mappedBy = "episode", fetch = FetchType.LAZY)
     private List<Bookmark> bookmarks;
 
     public Episode(String episodeTitle, String episodeURL) {
