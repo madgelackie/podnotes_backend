@@ -1,13 +1,27 @@
 package com.example.podnotesservice.podnotesBackend.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "channels")
 public class Channel {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "channel_url")
     private String channelUrl;
+
+    @Column(name = "channel_title")
     private String channelTitle;
+
+    @JsonIgnoreProperties(value = "channel")
+    @OneToMany(mappedBy = "channel", fetch = FetchType.LAZY)
     private List<Episode> episodes;
 
     public Channel(String channelUrl, String channelTitle) {
