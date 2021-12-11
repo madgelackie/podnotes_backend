@@ -1,4 +1,24 @@
 package com.example.podnotesservice.podnotesBackend.controller;
 
+import com.example.podnotesservice.podnotesBackend.models.Episode;
+import com.example.podnotesservice.podnotesBackend.repository.EpisodeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController
 public class EpisodeController {
+
+    @Autowired
+    EpisodeRepository episodeRepository;
+
+    @GetMapping(value = "/episodes")
+    public ResponseEntity<List<Episode>> getAllEpisodes(){
+        return new ResponseEntity<>(episodeRepository.findAll(), HttpStatus.OK);
+    }
+
 }
