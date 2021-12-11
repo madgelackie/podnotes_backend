@@ -24,10 +24,16 @@ public class Episode {
     @OneToMany(mappedBy = "episode", fetch = FetchType.LAZY)
     private List<Bookmark> bookmarks;
 
-    public Episode(String episodeTitle, String episodeURL) {
+    @JsonIgnoreProperties(value = "episodes")
+    @ManyToOne
+    @JoinColumn(name = "channel_id", nullable = false)
+    private Channel channel;
+
+    public Episode(String episodeTitle, String episodeURL, Channel channel) {
         this.episodeTitle = episodeTitle;
         this.episodeURL = episodeURL;
         this.bookmarks = new ArrayList<>();
+        this.channel = channel;
     }
 
 //    default constructor, required for ORM
@@ -69,5 +75,13 @@ public class Episode {
 
     public void addBookmark(Bookmark bookmark){
         this.bookmarks.add(bookmark);
+    }
+
+    public Channel getChannel() {
+        return channel;
+    }
+
+    public void setChannel(Channel channel) {
+        this.channel = channel;
     }
 }

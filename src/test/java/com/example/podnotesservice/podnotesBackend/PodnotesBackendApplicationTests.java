@@ -21,11 +21,11 @@ class PodnotesBackendApplicationTests {
 	void contextLoads() {
 	}
 
-	@Test
-	public void createEpisode(){
-		Episode episode1 = new Episode("Listen here", "http:blah");
-		episodeRepository.save(episode1);
-	}
+//	@Test
+//	public void createEpisode(){
+//		Episode episode1 = new Episode("Listen here", "http:blah", );
+//		episodeRepository.save(episode1);
+//	}
 
 
 

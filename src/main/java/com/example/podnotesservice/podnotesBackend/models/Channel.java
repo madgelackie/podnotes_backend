@@ -24,9 +24,9 @@ public class Channel {
     @OneToMany(mappedBy = "channel", fetch = FetchType.LAZY)
     private List<Episode> episodes;
 
-    public Channel(String channelUrl, String channelTitle) {
-        this.channelUrl = channelUrl;
+    public Channel(String channelTitle, String channelUrl) {
         this.channelTitle = channelTitle;
+        this.channelUrl = channelUrl;
         this.episodes = new ArrayList<>();
     }
 
