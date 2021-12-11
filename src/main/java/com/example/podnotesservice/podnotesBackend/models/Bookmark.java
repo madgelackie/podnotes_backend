@@ -13,7 +13,7 @@ public class Bookmark {
     private Long id;
 
     @Column(name = "timestamp")
-    private float timestamp;
+    private double timestamp;
 
     @Column(name = "note")
     private String note;
@@ -23,7 +23,7 @@ public class Bookmark {
     @JoinColumn(name = "episode_id", nullable = false)
     private Episode episode;
 
-    public Bookmark(float timestamp, String note, Episode episode) {
+    public Bookmark(double timestamp, String note, Episode episode) {
         this.timestamp = timestamp;
         this.note = note;
         this.episode = episode;
@@ -42,11 +42,11 @@ public class Bookmark {
         this.id = id;
     }
 
-    public float getTimestamp() {
+    public double getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(float timestamp) {
+    public void setTimestamp(double timestamp) {
         this.timestamp = timestamp;
     }
 

@@ -1,9 +1,20 @@
 package com.example.podnotesservice.podnotesBackend.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Channel {
+
+    private Long id;
     private String channelUrl;
     private String channelTitle;
-    private Long id;
+    private List<Episode> episodes;
+
+    public Channel(String channelUrl, String channelTitle) {
+        this.channelUrl = channelUrl;
+        this.channelTitle = channelTitle;
+        this.episodes = new ArrayList<>();
+    }
 
     public Channel(){
 
@@ -33,10 +44,15 @@ public class Channel {
         this.id = id;
     }
 
-    public Channel(String channelUrl, String channelTitle) {
-        this.channelUrl = channelUrl;
-        this.channelTitle = channelTitle;
+    public List<Episode> getEpisodes() {
+        return episodes;
+    }
 
+    public void setEpisodes(List<Episode> episodes) {
+        this.episodes = episodes;
+    }
 
+    public void addEpisode(Episode episode){
+        this.episodes.add(episode);
     }
 }
