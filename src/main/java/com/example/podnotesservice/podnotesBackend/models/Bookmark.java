@@ -1,24 +1,36 @@
 package com.example.podnotesservice.podnotesBackend.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="bookmarks")
 public class Bookmark {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String episodeTitle;
-    private String episodeUrl;
-    private float timeStamp;
-    private String note;
-    private Channel channel;
 
-    public Bookmark(String episodeTitle, String episodeUrl, float timeStamp, String note, Channel channel) {
-        this.episodeTitle = episodeTitle;
-        this.episodeUrl = episodeUrl;
-        this.timeStamp = timeStamp;
+    @Column(name = "timestamp")
+    private float timestamp;
+
+    @Column(name = "note")
+    private String note;
+
+    @JsonIgnoreProperties(value = "bookmarks")
+    @ManyToOne
+    @JoinColumn(name = "episode_id", nullable = false)
+    private Episode episode;
+
+    public Bookmark(float timestamp, String note, Episode episode) {
+        this.timestamp = timestamp;
         this.note = note;
-        this.channel = channel;
+        this.episode = episode;
     }
 
-//    default constructor, required to meet POJO requirements for object relational mapping
-    public Bookmark (){
+    //    default constructor, required to meet POJO requirements for object relational mapping
+    public Bookmark() {
 
     }
 
@@ -30,28 +42,12 @@ public class Bookmark {
         this.id = id;
     }
 
-    public String getEpisodeTitle() {
-        return episodeTitle;
+    public float getTimestamp() {
+        return timestamp;
     }
 
-    public void setEpisodeTitle(String episodeTitle) {
-        this.episodeTitle = episodeTitle;
-    }
-
-    public String getEpisodeUrl() {
-        return episodeUrl;
-    }
-
-    public void setEpisodeUrl(String episodeUrl) {
-        this.episodeUrl = episodeUrl;
-    }
-
-    public float getTimeStamp() {
-        return timeStamp;
-    }
-
-    public void setTimeStamp(float timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setTimestamp(float timestamp) {
+        this.timestamp = timestamp;
     }
 
     public String getNote() {
@@ -62,11 +58,13 @@ public class Bookmark {
         this.note = note;
     }
 
-    public Channel getChannel() {
-        return channel;
+    public Episode getEpisode() {
+        return episode;
     }
 
-    public void setChannel(Channel channel) {
-        this.channel = channel;
+    public void setEpisode(Episode episode) {
+        this.episode = episode;
     }
 }
+
+
