@@ -16,6 +16,7 @@ public class ChannelController {
     ChannelRepository channelRepository;
 
     @GetMapping(value = "/channels")
+    @CrossOrigin(origins = "*", maxAge = 3600)
     public ResponseEntity<List<Channel>> getAllChannels(){
         return new ResponseEntity<>(channelRepository.findAll(), HttpStatus.OK);
     }
@@ -26,9 +27,10 @@ public class ChannelController {
     }
 
     @PostMapping(value = "/channels")
-    public ResponseEntity<Channel> createChannel(@RequestBody Channel channel){
+    @CrossOrigin(origins = "*", maxAge = 3600)
+    public ResponseEntity createChannel(@RequestBody Channel channel){
         channelRepository.save(channel);
-        return new ResponseEntity<> (channel, HttpStatus.CREATED);
+        return new ResponseEntity (channel, HttpStatus.CREATED);
     }
 
     @DeleteMapping(value = "/channels/{id}")
