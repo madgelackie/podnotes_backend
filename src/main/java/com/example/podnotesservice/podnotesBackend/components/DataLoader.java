@@ -29,10 +29,10 @@ public class DataLoader implements ApplicationRunner {
 
     public void run(ApplicationArguments args) {
 
-        Channel channelA = new Channel("Podcast News", "httpABCD");
+        Channel channelA = new Channel("httpABCD");
         channelRepository.save(channelA);
 
-        Channel channelB = new Channel("DevStories", "http://3456");
+        Channel channelB = new Channel("http://3456");
         channelRepository.save(channelB);
 
         Episode episode1 = new Episode("Listen To This", "http:...", channelA);

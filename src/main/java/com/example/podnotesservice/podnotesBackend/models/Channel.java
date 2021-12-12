@@ -17,15 +17,11 @@ public class Channel {
     @Column(name = "channel_url")
     private String channelUrl;
 
-    @Column(name = "channel_title")
-    private String channelTitle;
-
     @JsonIgnoreProperties(value = "channel")
     @OneToMany(mappedBy = "channel", fetch = FetchType.LAZY)
     private List<Episode> episodes;
 
-    public Channel(String channelTitle, String channelUrl) {
-        this.channelTitle = channelTitle;
+    public Channel(String channelUrl) {
         this.channelUrl = channelUrl;
         this.episodes = new ArrayList<>();
     }
@@ -40,14 +36,6 @@ public class Channel {
 
     public void setChannelUrl(String channelUrl) {
         this.channelUrl = channelUrl;
-    }
-
-    public String getChannelTitle() {
-        return channelTitle;
-    }
-
-    public void setChannelTitle(String channelTitle) {
-        this.channelTitle = channelTitle;
     }
 
     public Long getId() {

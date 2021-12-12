@@ -22,13 +22,20 @@ public class ChannelController {
 
     @GetMapping(value = "/channels/{id}")
     public ResponseEntity getChannel(@PathVariable Long id){
-        return new ResponseEntity<>(channelRepository.findById(id), HttpStatus.OK);
+        return new ResponseEntity (channelRepository.findById(id), HttpStatus.OK);
     }
 
-    @PostMapping(value = "channels")
-    public ResponseEntity createChannel(@RequestBody Channel channel){
+    @PostMapping(value = "/channels")
+    public ResponseEntity<Channel> createChannel(@RequestBody Channel channel){
         channelRepository.save(channel);
-        return new ResponseEntity<>(channel, HttpStatus.CREATED);
+        return new ResponseEntity<> (channel, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping(value = "/channels/{id}")
+    public ResponseEntity<Channel> deleteShip(@PathVariable Long id) {
+        Channel found = channelRepository.getById(id);
+        channelRepository.delete(found);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
 }
