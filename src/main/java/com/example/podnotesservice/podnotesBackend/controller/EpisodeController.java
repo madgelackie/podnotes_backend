@@ -1,12 +1,12 @@
 package com.example.podnotesservice.podnotesBackend.controller;
 
+import com.example.podnotesservice.podnotesBackend.models.Channel;
 import com.example.podnotesservice.podnotesBackend.models.Episode;
 import com.example.podnotesservice.podnotesBackend.repository.EpisodeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,6 +19,13 @@ public class EpisodeController {
     @GetMapping(value = "/episodes")
     public ResponseEntity<List<Episode>> getAllEpisodes(){
         return new ResponseEntity<>(episodeRepository.findAll(), HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/episodes")
+    @CrossOrigin(origins = "*", maxAge = 3600)
+    public ResponseEntity createEpisode(@RequestBody Episode episode){
+        episodeRepository.save(episode);
+        return new ResponseEntity (episode, HttpStatus.CREATED);
     }
 
 }
