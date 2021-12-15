@@ -33,7 +33,7 @@ public class EpisodeController {
 
     @GetMapping(value = "/episodes/{episodeURL}")
     public ResponseEntity getEpisode(@PathVariable String episodeURL) {
-        return new ResponseEntity<>(episodeRepository.findByEpisodeURL(episodeURL), HttpStatus.OK);
+        return new ResponseEntity(episodeRepository.findByEpisodeURL(episodeURL), HttpStatus.OK);
     }
 
     @PostMapping(value = "/episodes")

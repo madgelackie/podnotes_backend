@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface EpisodeRepository extends JpaRepository <Episode, Long> {
 
-    List<Episode> findByEpisodeURL (String episodeURL);
+    Episode findByEpisodeURL (String episodeURL);
 
 }
