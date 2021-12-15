@@ -16,9 +16,24 @@ public class EpisodeController {
     @Autowired
     EpisodeRepository episodeRepository;
 
+//    @GetMapping(value = "/episodes")
+//    public ResponseEntity<List<Episode>> findByEpisodeTitle(
+//            @RequestParam(name="episodeTitle", required = false) String episodeTitle
+//    ){
+//        if (episodeTitle != null){
+//            return new ResponseEntity<>(episodeRepository.findByEpisodeTitle(episodeTitle), HttpStatus.OK);
+//        }
+//        return new ResponseEntity<>(episodeRepository.findAll(), HttpStatus.OK);
+//    }
+
     @GetMapping(value = "/episodes")
     public ResponseEntity<List<Episode>> getAllEpisodes(){
         return new ResponseEntity<>(episodeRepository.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/episodes/{episodeURL}")
+    public ResponseEntity getEpisode(@PathVariable String episodeURL) {
+        return new ResponseEntity<>(episodeRepository.findByEpisodeURL(episodeURL), HttpStatus.OK);
     }
 
     @PostMapping(value = "/episodes")

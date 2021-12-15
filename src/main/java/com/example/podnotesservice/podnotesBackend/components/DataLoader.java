@@ -41,10 +41,10 @@ public class DataLoader implements ApplicationRunner {
         Episode episode2 = new Episode("Now listen to this", "http:...hjfj", channelB);
         episodeRepository.save(episode2);
 
-        Bookmark bookmark1 = new Bookmark(7.9, "blalalaslsld", episode1);
+        Bookmark bookmark1 = new Bookmark(7.9f, "blalalaslsld", episode1);
         bookmarkRepository.save(bookmark1);
 
-        Bookmark bookmark2 = new Bookmark(167.9, "blalalaslsld", episode1);
+        Bookmark bookmark2 = new Bookmark(167.9f, "blalalaslsld", episode1);
         bookmarkRepository.save(bookmark2);
 
         Bookmark bookmark3 = new Bookmark(200, "blalalaslsld", episode2);
@@ -53,7 +53,7 @@ public class DataLoader implements ApplicationRunner {
         Bookmark bookmark4 = new Bookmark(58, "blalalaslsld", episode2);
         bookmarkRepository.save(bookmark4);
 
-        Bookmark bookmark5 = new Bookmark(7684.1256, "blalalaslsld", episode2);
+        Bookmark bookmark5 = new Bookmark(7684.1256f, "blalalaslsld", episode2);
         bookmarkRepository.save(bookmark5);
 
 //        add episode to channel episode list:
